@@ -7,8 +7,18 @@ import {
 export class SpecificationsRepository implements ISpecificationRepository {
   private specification: Specification[];
 
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: SpecificationsRepository;
+
   constructor() {
     this.specification = [];
+  }
+
+  public static getSpecification(): SpecificationsRepository {
+    if (!SpecificationsRepository.INSTANCE) {
+      SpecificationsRepository.INSTANCE = new SpecificationsRepository();
+    }
+    return SpecificationsRepository.INSTANCE;
   }
 
   async findByName(name: string): Promise<Specification> {
