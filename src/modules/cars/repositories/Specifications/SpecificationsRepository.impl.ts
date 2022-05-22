@@ -5,16 +5,16 @@ import {
 } from "./ISpecificationsRepository";
 
 export class SpecificationsRepository implements ISpecificationRepository {
-  private specification: Specification[];
+  private specifications: Specification[];
 
   // eslint-disable-next-line no-use-before-define
   private static INSTANCE: SpecificationsRepository;
 
   constructor() {
-    this.specification = [];
+    this.specifications = [];
   }
 
-  public static getSpecification(): SpecificationsRepository {
+  public static getInstance(): SpecificationsRepository {
     if (!SpecificationsRepository.INSTANCE) {
       SpecificationsRepository.INSTANCE = new SpecificationsRepository();
     }
@@ -22,19 +22,19 @@ export class SpecificationsRepository implements ISpecificationRepository {
   }
 
   async findByName(name: string): Promise<Specification> {
-    const specification = this.specification.find(
+    const specification = this.specifications.find(
       (specification) => specification.name === name
     );
     return specification;
   }
 
   async list(): Promise<Specification[]> {
-    return this.specification;
+    return this.specifications;
   }
 
   async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
     const specification = new Specification();
     Object.assign(specification, { name, description });
-    this.specification.push(specification);
+    this.specifications.push(specification);
   }
 }

@@ -2,7 +2,7 @@ import { SpecificationsRepository } from "../../../repositories/Specifications/S
 import { ListSpecificationController } from "./ListSpecificationController";
 import { ListSpecificationUseCase } from "./ListSpecificationUseCase";
 
-const specificationRepository = SpecificationsRepository.getSpecification();
+const specificationRepository = SpecificationsRepository.getInstance();
 const listSpecificationUseCase = new ListSpecificationUseCase(
   specificationRepository
 );
