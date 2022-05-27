@@ -9,7 +9,7 @@ import { listCategoriesController } from "../modules/cars/useCases/Categories/li
 export const categoriesRoutes = Router();
 
 const upload = multer({
-  dest: path.resolve(__dirname, "../", "/tmp"),
+  dest: path.resolve(__dirname, "..", "..", "./tmp"),
 });
 
 categoriesRoutes.post("/", async (request, response) => {
