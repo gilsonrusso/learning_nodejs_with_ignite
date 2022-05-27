@@ -24,6 +24,7 @@ export class ImportCategoryUseCase {
           categories.push({ ...line });
         })
         .on("end", () => {
+          fs.promises.unlink(file.path); // unlink reponsaval por remover um arquivo.
           resolve(categories);
         })
         .on("error", (err) => {
