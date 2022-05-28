@@ -10,9 +10,21 @@ services:
     ports:
       - "3333:3333"
     command: yarn dev
-  # database-one:
-  #   image: mongo
-  #   container_name: database-one
-  #   restart: always
-  #   ports: 
-  #     - 27017:27017
+    depends_on:
+      - database-ps
+  database-ps:
+    image: postgres
+    container_name: database-ps
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=rentx
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
